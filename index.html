@@ -3,77 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Win7Simu - Volledig Scherm</title>
+    <title>Win7Simu Launcher</title>
     <style>
-        * {
+        body {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            height: 100vh;
             background-color: #000;
-            font-family: Arial, sans-serif;
-        }
-        #winFrame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-        #startContainer {
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: white;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .start-btn {
-            padding: 15px 30px;
-            font-size: 18px;
+            font-family: Arial, sans-serif;
+            text-align: center;
             cursor: pointer;
-            background-color: #0078d7;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background 0.3s;
         }
-        .start-btn:hover {
-            background-color: #005a9e;
+        .box {
+            border: 2px solid #0078d7;
+            padding: 30px;
+            border-radius: 12px;
+            background: #111;
         }
+        h1 { margin-bottom: 10px; font-size: 24px; }
+        p { color: #aaa; font-size: 14px; }
     </style>
 </head>
-<body>
+<body onclick="openFullscreen()">
 
-    <div id="startContainer">
-        <h1>Win7Simu Starten</h1>
-        <button class="start-btn" onclick="startFullscreen()">Open in Volledig Scherm</button>
+    <div class="box">
+        <h1>Tik om Win7Simu te starten</h1>
+        <p>Volledig scherm wordt geactiveerd...</p>
     </div>
 
-    <iframe id="winFrame" src="https://win7simu.visnalize.com" allowfullscreen></iframe>
-
     <script>
-        function startFullscreen() {
+        function openFullscreen() {
             const elem = document.documentElement;
-            const container = document.getElementById('startContainer');
-            const iframe = document.getElementById('winFrame');
 
-            // Vraag volledig scherm aan
+            // Activeer volledig scherm op de browser
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
+            } else if (elem.webkitRequestFullscreen) {
                 elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
+            } else if (elem.msRequestFullscreen) {
                 elem.msRequestFullscreen();
             }
 
-            // Verberg de startknop en toon het iframe
-            container.style.display = 'none';
-            iframe.style.display = 'block';
+            // Stuur direct door naar de site (geen iframe)
+            setTimeout(() => {
+                window.location.href = "https://win7simu.visnalize.com";
+            }, 100);
         }
     </script>
 
